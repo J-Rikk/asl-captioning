@@ -36,6 +36,9 @@ font = cv2.FONT_HERSHEY_TRIPLEX
 #classes available on the MNIST model in order
 letters = "ABCDEFGHIKLMNOPQRSTUVWXY"
 
+#loads the MNIST model
+model = keras.models.load_model(model_directory)
+
 #function to make the pixel points into even and to add the set padding
 def make_even_put_padding(coord):
     for x in range(2):
@@ -169,8 +172,6 @@ with pyvirtualcam.Camera(width=webcam_width, height=webcam_height, fps=20, fmt=f
                     #recolors the extracted ROI to graysclae as needed by the MNIST model
                     resized = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
 
-                    #loads the MNIST model
-                    model = keras.models.load_model(model_directory)
                     #produces the list of predictions by the model
                     prediction_array = model.predict(np.expand_dims(np.expand_dims(resized, axis = 2), axis = 0))
                     #retrieves the index of the class / letter with the highest probability predicted by the model
