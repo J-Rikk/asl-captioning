@@ -34,7 +34,7 @@ text_color = (0, 255, 255)
 font = cv2.FONT_HERSHEY_TRIPLEX
 
 #classes available on the AlexNet model in order
-letters = ["A","B","C","D","Disike","E","F","G","H","I","J","K","L","Like","I Love You","M","N","No","O","P","Q","R","S","T","U","V","W","X","Y","Yes","Z","del",""," "]
+letters = ["A","B","C","D","Dislike","E","F","G","H","I","J","K","L","Like","I Love You","M","N","No","O","P","Q","R","S","T","U","V","W","X","Y","Yes","Z","del",""," "]
 
 #loads the AlexNet model
 model = keras.models.load_model(model_directory)
