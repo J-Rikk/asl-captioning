@@ -8,16 +8,13 @@ import psutil
 import os
 import threading
 
-#retrieves device's CPU details and total virtual memory
 cpu_model = cpuinfo.get_cpu_info()["brand_raw"]
 ram_total = psutil.virtual_memory()[0]
 
-#function that checks the OS then clears the console 
 def clear_console():
     command = 'cls' if os.name in ('nt', 'dos') else 'clear'
     os.system(command)
 
-#logs and reports CPU and RAM usage every second; data is saved in separate text files
 def usage_report(cpu_model, ram_total):
     open('cpu_log.txt','w').close()
     open('ram_log.txt','w').close()
@@ -45,12 +42,13 @@ def usage_report(cpu_model, ram_total):
 t1 = threading.Thread(target=usage_report, args=[cpu_model, ram_total])
 t1.start()
 
-#code for frame rate evaluation
+#code for running average frame rate evaluation
 #set initial previous time before video capture
+frame_count = 0
 pTime = 0
 
 #insert code after the current frame has been processed to get current time
 cTime = time.time()
-fps = 1 / (cTime - pTime)
-#changes previous time to current time for next frame
-pTime = cTime
+frame_count += 1
+print(frame_count)
+print(frame_count/(cTime - pTime))
